@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>樱花樱花动漫-樱花动漫_动漫推荐_番剧分类_追番导航</title>
+<meta name="description" content="樱花樱花动漫主题导航页，围绕樱花动漫的番剧分类、动漫推荐与追番线索整理，帮助访问者按题材、年份与连载状态快速了解想看的内容，找到合适的动漫浏览方向。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23fde8ef'/%3E%3Cg fill='%23e8628c'%3E%3Cellipse cx='32' cy='18' rx='7' ry='12'/%3E%3Cellipse cx='45' cy='27' rx='7' ry='12' transform='rotate(72 45 27)'/%3E%3Cellipse cx='40' cy='43' rx='7' ry='12' transform='rotate(144 40 43)'/%3E%3Cellipse cx='24' cy='43' rx='7' ry='12' transform='rotate(216 24 43)'/%3E%3Cellipse cx='19' cy='27' rx='7' ry='12' transform='rotate(288 19 27)'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='5' fill='%23f7b731'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#2c2430;
+  --ink-soft:#6b5f70;
+  --pink:#e8628c;
+  --pink-deep:#c7436b;
+  --pink-wash:#fde8ef;
+  --cream:#fffaf5;
+  --line:#f0dfe6;
+  --gold:#f7b731;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+
+/* 页头 */
+.sakura-head{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,250,245,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.head-inner{
+  max-width:1120px;margin:0 auto;
+  padding:12px 20px;
+  display:flex;align-items:center;gap:18px;
+}
+.logo{display:flex;align-items:center;gap:9px;flex:0 0 auto}
+.logo svg{width:34px;height:34px}
+.logo-txt{font-size:18px;font-weight:700;letter-spacing:.5px;color:var(--pink-deep);white-space:nowrap}
+.sakura-nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.sakura-nav a{
+  font-size:14px;color:var(--ink-soft);
+  padding:6px 12px;border-radius:999px;
+  transition:background .2s,color .2s;
+}
+.sakura-nav a:hover{background:var(--pink-wash);color:var(--pink-deep)}
+.head-cta{
+  font-size:13px;font-weight:600;color:#fff;
+  background:var(--pink);padding:7px 16px;border-radius:999px;
+  white-space:nowrap;
+}
+.head-cta:hover{background:var(--pink-deep)}
+
+/* 首屏 */
+.bloom{
+  max-width:1120px;margin:0 auto;
+  padding:48px 20px 36px;
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:40px;align-items:center;
+}
+.bloom h1{
+  font-size:clamp(28px,4.2vw,42px);
+  line-height:1.3;font-weight:800;
+  letter-spacing:-.5px;
+  margin-bottom:16px;
+}
+.bloom h1 em{
+  font-style:normal;color:var(--pink-deep);
+  position:relative;
+}
+.bloom h1 em::after{
+  content:"";position:absolute;left:0;right:0;bottom:2px;height:8px;
+  background:var(--pink-wash);z-index:-1;border-radius:4px;
+}
+.bloom .lead{font-size:16px;color:var(--ink-soft);margin-bottom:22px;max-width:520px}
+.bloom-tags{display:flex;flex-wrap:wrap;gap:8px}
+.bloom-tags span{
+  font-size:13px;color:var(--pink-deep);
+  background:var(--pink-wash);
+  padding:5px 13px;border-radius:999px;
+}
+.bloom-art{position:relative;justify-self:center}
+.bloom-art svg{width:260px;height:260px}
+
+/* 区块通用 */
+.zone{max-width:1120px;margin:0 auto;padding:16px 20px 44px}
+.zone-title{
+  display:flex;align-items:baseline;gap:12px;
+  margin-bottom:6px;
+}
+.zone-title h2{font-size:22px;font-weight:700;letter-spacing:-.3px}
+.zone-title .sub{font-size:13px;color:var(--ink-soft)}
+.zone-note{font-size:14px;color:var(--ink-soft);margin-bottom:22px;max-width:720px}
+
+/* 题材分类 */
+.genre-flow{display:flex;flex-wrap:wrap;gap:10px}
+.genre-flow a{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:9px 18px;border-radius:12px;
+  font-size:14px;transition:.2s;
+}
+.genre-flow a:hover{border-color:var(--pink);color:var(--pink-deep);transform:translateY(-2px)}
+.genre-flow a small{color:var(--ink-soft);font-size:12px;margin-left:6px}
+
+/* 推荐 */
+.picks{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pick{
+  background:#fff;border:1px solid var(--line);border-radius:16px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .2s,box-shadow .2s;
+}
+.pick:hover{transform:translateY(-3px);box-shadow:0 12px 28px -18px rgba(199,67,107,.45)}
+.pick-fig{height:104px;position:relative;overflow:hidden}
+.pick-fig svg{width:100%;height:100%}
+.pick-body{padding:14px 16px 18px}
+.pick-body h3{font-size:16px;margin-bottom:6px}
+.pick-body p{font-size:13.5px;color:var(--ink-soft);line-height:1.65}
+.pick-meta{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.pick-meta i{
+  font-style:normal;font-size:11.5px;
+  background:var(--pink-wash);color:var(--pink-deep);
+  padding:2px 9px;border-radius:6px;
+}
+
+/* 状态筛选 */
+.status-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+}
+.status-block{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:18px 20px;
+}
+.status-block h3{font-size:16px;margin-bottom:4px;color:var(--pink-deep)}
+.status-block .tag{font-size:12px;color:var(--ink-soft);display:block;margin-bottom:10px}
+.status-block ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.status-block li{font-size:13.5px;color:var(--ink-soft);padding-left:14px;position:relative}
+.status-block li::before{
+  content:"";position:absolute;left:0;top:9px;
+  width:6px;height:6px;border-radius:50%;background:var(--pink);
+}
+
+/* 年份 */
+.year-band{
+  background:linear-gradient(180deg,#fff 0%,var(--pink-wash) 100%);
+  border-radius:20px;padding:26px 24px;
+}
+.year-band h2{font-size:20px;margin-bottom:6px}
+.year-band p{font-size:14px;color:var(--ink-soft);margin-bottom:18px}
+.year-list{display:flex;flex-wrap:wrap;gap:9px}
+.year-list a{
+  background:#fff;border:1px solid var(--line);
+  font-size:13.5px;padding:7px 16px;border-radius:9px;
+  transition:.2s;
+}
+.year-list a:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+
+/* 追番小贴士 */
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tip{
+  background:#fff;border-left:4px solid var(--pink);
+  border-radius:0 14px 14px 0;
+  padding:18px 20px;
+}
+.tip h3{font-size:15.5px;margin-bottom:6px}
+.tip p{font-size:13.5px;color:var(--ink-soft)}
+
+/* 页脚 */
+.sakura-foot{
+  border-top:1px solid var(--line);
+  background:#fff;
+  padding:34px 20px 40px;
+  margin-top:10px;
+}
+.foot-inner{
+  max-width:1120px;margin:0 auto;
+  display:flex;flex-wrap:wrap;gap:24px;
+  justify-content:space-between;align-items:flex-start;
+}
+.foot-brand{max-width:340px}
+.foot-brand .logo{margin-bottom:10px}
+.foot-brand p{font-size:13px;color:var(--ink-soft)}
+.foot-links{display:flex;gap:36px;flex-wrap:wrap}
+.foot-col h4{font-size:13px;color:var(--ink);margin-bottom:10px}
+.foot-col a{display:block;font-size:13px;color:var(--ink-soft);margin-bottom:7px}
+.foot-col a:hover{color:var(--pink-deep)}
+.foot-bottom{
+  max-width:1120px;margin:26px auto 0;
+  padding-top:18px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--ink-soft);
+}
+
+@media (max-width:900px){
+  .bloom{grid-template-columns:1fr;padding-top:34px;gap:24px}
+  .bloom-art{order:-1;justify-self:start}
+  .bloom-art svg{width:170px;height:170px}
+  .picks{grid-template-columns:repeat(2,1fr)}
+  .status-row{grid-template-columns:1fr}
+  .tips{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .head-inner{flex-wrap:wrap;gap:10px;padding:10px 16px}
+  .sakura-nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px}
+  .sakura-nav a{white-space:nowrap;padding:5px 10px}
+  .head-cta{margin-left:auto}
+  .logo-txt{font-size:16px}
+  .bloom{padding:24px 16px 28px}
+  .bloom .lead{font-size:15px}
+  .zone{padding:12px 16px 34px}
+  .picks{grid-template-columns:1fr}
+  .year-band{padding:20px 16px;border-radius:16px}
+  .foot-inner{flex-direction:column;gap:20px}
+  .foot-links{gap:28px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="sakura-head">
+  <div class="head-inner">
+    <div class="logo">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#fde8ef"/>
+        <g fill="#e8628c">
+          <ellipse cx="32" cy="18" rx="7" ry="12"/>
+          <ellipse cx="45" cy="27" rx="7" ry="12" transform="rotate(72 45 27)"/>
+          <ellipse cx="40" cy="43" rx="7" ry="12" transform="rotate(144 40 43)"/>
+          <ellipse cx="24" cy="43" rx="7" ry="12" transform="rotate(216 24 43)"/>
+          <ellipse cx="19" cy="27" rx="7" ry="12" transform="rotate(288 19 27)"/>
+        </g>
+        <circle cx="32" cy="32" r="5" fill="#f7b731"/>
+      </svg>
+      <span class="logo-txt">樱花樱花动漫</span>
+    </div>
+    <nav class="sakura-nav">
+      <a href="#genre">题材分类</a>
+      <a href="#picks">动漫推荐</a>
+      <a href="#status">连载状态</a>
+      <a href="#year">年份索引</a>
+      <a href="#tips">追番小贴士</a>
+    </nav>
+    <a class="head-cta" href="#genre">开始浏览</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="bloom">
+    <div>
+      <h1>樱花樱花动漫：按题材与状态找到想看的<em>番剧</em></h1>
+      <p class="lead">樱花樱花动漫是一个围绕动漫浏览与番剧筛选的导航型首页。这里把题材、连载状态、年份和追番线索集中整理，让你不必在杂乱的列表里反复翻找，就能快速定位下一部想看的动漫。</p>
+      <div class="bloom-tags">
+        <span>题材分类</span>
+        <span>连载状态</span>
+        <span>年份索引</span>
+        <span>追番线索</span>
+      </div>
+    </div>
+    <div class="bloom-art" aria-hidden="true">
+      <svg viewBox="0 0 260 260">
+        <circle cx="130" cy="130" r="120" fill="#fde8ef"/>
+        <circle cx="130" cy="130" r="86" fill="#fff" stroke="#f0dfe6" stroke-width="2"/>
+        <g fill="#e8628c" opacity=".9">
+          <ellipse cx="130" cy="80" rx="16" ry="30"/>
+          <ellipse cx="168" cy="103" rx="16" ry="30" transform="rotate(72 168 103)"/>
+          <ellipse cx="159" cy="147" rx="16" ry="30" transform="rotate(144 159 147)"/>
+          <ellipse cx="101" cy="147" rx="16" ry="30" transform="rotate(216 101 147)"/>
+          <ellipse cx="92" cy="103" rx="16" ry="30" transform="rotate(288 92 103)"/>
+        </g>
+        <circle cx="130" cy="130" r="13" fill="#f7b731"/>
+        <circle cx="42" cy="58" r="7" fill="#f7b731" opacity=".7"/>
+        <circle cx="214" cy="72" r="5" fill="#e8628c" opacity=".55"/>
+        <circle cx="206" cy="196" r="8" fill="#f7b731" opacity=".5"/>
+        <circle cx="52" cy="200" r="5" fill="#e8628c" opacity=".5"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="zone" id="genre">
+    <div class="zone-title">
+      <h2>题材分类</h2>
+      <span class="sub">从喜欢的类型出发</span>
+    </div>
+    <p class="zone-note">不同题材对应不同的观看节奏和情绪体验。先从题材缩小范围，再结合连载状态与年份，往往比漫无目的地翻列表更快。樱花樱花动漫把常见题材整理成清晰的入口，方便按兴趣逐层筛选。</p>
+    <div class="genre-flow">
+      <a href="#picks">热血战斗<small>燃向</small></a>
+      <a href="#picks">日常治愈<small>轻松</small></a>
+      <a href="#picks">校园青春<small>成长</small></a>
+      <a href="#picks">奇幻冒险<small>设定</small></a>
+      <a href="#picks">悬疑推理<small>烧脑</small></a>
+      <a href="#picks">科幻机战<small>硬核</small></a>
+      <a href="#picks">恋爱物语<small>情感</small></a>
+      <a href="#picks">运动竞技<small>热血</small></a>
+      <a href="#picks">音乐偶像<small>舞台</small></a>
+      <a href="#picks">美食料理<small>生活</small></a>
+      <a href="#picks">历史时代<small>考据</small></a>
+      <a href="#picks">搞笑吐槽<small>解压</small></a>
+    </div>
+  </section>
+
+  <section class="zone" id="picks">
+    <div class="zone-title">
+      <h2>动漫推荐方向</h2>
+      <span class="sub">按观看诉求挑选</span>
+    </div>
+    <p class="zone-note">推荐不是简单罗列名字，而是先想清楚自己此刻想看什么：是想要一口气追下去的强情节，还是轻松下饭的日常。下面按不同诉求给出方向，实际片单以你所在平台可观看的内容为准。</p>
+    <div class="picks">
+      <article class="pick">
+        <div class="pick-fig">
+          <svg viewBox="0 0 300 104" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="300" height="104" fill="#fde8ef"/>
+            <circle cx="60" cy="52" r="30" fill="#e8628c" opacity=".35"/>
+            <circle cx="120" cy="38" r="18" fill="#f7b731" opacity=".5"/>
+            <path d="M180 104 L230 30 L280 104 Z" fill="#c7436b" opacity=".22"/>
+          </svg>
+        </div>
+        <div class="pick-body">
+          <h3>想一口气追完</h3>
+          <p>优先选择情节推进快、每集结尾有钩子的作品，连续观看时更容易保持投入。</p>
+          <div class="pick-meta"><i>强情节</i><i>连续剧集</i><i>热血</i></div>
+        </div>
+      </article>
+      <article class="pick">
+        <div class="pick-fig">
+          <svg viewBox="0 0 300 104" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="300" height="104" fill="#fff3e0"/>
+            <circle cx="80" cy="52" r="34" fill="#f7b731" opacity=".35"/>
+            <circle cx="170" cy="46" r="22" fill="#e8628c" opacity=".3"/>
+            <rect x="220" y="30" width="44" height="44" rx="12" fill="#c7436b" opacity=".18"/>
+          </svg>
+        </div>
+        <div class="pick-body">
+          <h3>想轻松下饭</h3>
+          <p>日常、搞笑和治愈类作品单集独立性强，随时暂停也不影响理解，适合碎片时间。</p>
+          <div class="pick-meta"><i>日常</i><i>治愈</i><i>单元剧</i></div>
+        </div>
+      </article>
+      <article class="pick">
+        <div class="pick-fig">
+          <svg viewBox="0 0 300 104" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="300" height="104" fill="#e8f0fd"/>
+            <circle cx="70" cy="52" r="26" fill="#6b8fd4" opacity=".3"/>
+            <path d="M120 80 L160 24 L200 80 Z" fill="#c7436b" opacity=".2"/>
+            <circle cx="240" cy="50" r="30" fill="#f7b731" opacity=".28"/>
+          </svg>
+        </div>
+        <div class="pick-body">
+          <h3>想动脑推理</h3>
+          <p>悬疑与推理向作品信息密度高，适合专注观看，留意伏笔和人物关系会更有乐趣。</p>
+          <div class="pick-meta"><i>悬疑</i><i>推理</i><i>烧脑</i></div>
+        </div>
+      </article>
+      <article class="pick">
+        <div class="pick-fig">
+          <svg viewBox="0 0 300 104" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="300" height="104" fill="#fde8ef"/>
+            <ellipse cx="90" cy="52" rx="40" ry="26" fill="#e8628c" opacity=".28"/>
+            <ellipse cx="200" cy="52" rx="40" ry="26" fill="#f7b731" opacity=".3"/>
+          </svg>
+        </div>
+        <div class="pick-body">
+          <h3>想看情感故事</h3>
+          <p>恋爱与青春题材重在人物关系变化，按角色成长线看比按集数跳看更容易理解情绪。</p>
+          <div class="pick-meta"><i>恋爱</i><i>青春</i><i>成长线</i></div>
+        </div>
+      </article>
+      <article class="pick">
+        <div class="pick-fig">
+          <svg viewBox="0 0 300 104" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="300" height="104" fill="#eaf5ee"/>
+            <circle cx="90" cy="46" r="28" fill="#5aa97a" opacity=".28"/>
+            <circle cx="190" cy="58" r="20" fill="#f7b731" opacity=".4"/>
+            <rect x="230" y="26" width="40" height="52" rx="10" fill="#c7436b" opacity=".15"/>
+          </svg>
+        </div>
+        <div class="pick-body">
+          <h3>想找世界观设定</h3>
+          <p>奇幻与科幻作品常在前几集铺设定，建议先看两到三集再判断是否合口味。</p>
+          <div class="pick-meta"><i>奇幻</i><i>科幻</i><i>世界观</i></div>
+        </div>
+      </article>
+      <article class="pick">
+        <div class="pick-fig">
+          <svg viewBox="0 0 300 104" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="300" height="104" fill="#fff0f4"/>
+            <path d="M0 80 Q80 20 160 70 T300 60 L300 104 L0 104 Z" fill="#e8628c" opacity=".22"/>
+            <circle cx="240" cy="34" r="14" fill="#f7b731" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="pick-body">
+          <h3>想跟朋友一起看</h3>
+          <p>运动竞技与搞笑类作品气氛热烈，适合多人同看，讨论和吐槽本身就是乐趣。</p>
+          <div class="pick-meta"><i>竞技</i><i>搞笑</i><i>合看</i></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="zone" id="status">
+    <div class="zone-title">
+      <h2>连载状态</h2>
+      <span class="sub">先确认要不要等更新</span>
+    </div>
+    <p class="zone-note">在樱花樱花动漫里挑选番剧时，连载状态往往比题材更影响体验。喜欢一次看到结局的人和享受每周等待的人，选择完全不同。先确认状态，再决定是否入坑。</p>
+    <div class="status-row">
+      <div class="status-block">
+        <h3>已完结</h3>
+        <span class="tag">适合连续补番</span>
+        <ul>
+          <li>可以按自己的节奏一次看完</li>
+          <li>不必担心断更与等待</li>
+          <li>适合先了解完整故事线</li>
+        </ul>
+      </div>
+      <div class="status-block">
+        <h3>连载中</h3>
+        <span class="tag">适合跟更讨论</span>
+        <ul>
+          <li>每周更新，追更节奏固定</li>
+          <li>容易形成讨论与猜测氛围</li>
+          <li>需要留意更新进度</li>
+        </ul>
+      </div>
+      <div class="status-block">
+        <h3>未确定</h3>
+        <span class="tag">适合先观望</span>
+        <ul>
+          <li>续作与档期信息可能变化</li>
+          <li>可先看现有部分再决定</li>
+          <li>关注后续公开信息</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="zone">
+    <div class="year-band" id="year">
+      <h2>年份索引</h2>
+      <p>按首播年份浏览，能快速定位某个时期的画风与叙事风格。年纪较新的作品画面表现通常更精细，较早的作品则常有独特的手绘质感。樱花樱花动漫按年份给出入口，方便你在不同年代之间对比选择。</p>
+      <div class="year-list">
+        <a href="#picks">近年新番</a>
+        <a href="#picks">经典老番</a>
+        <a href="#picks">长篇系列</a>
+        <a href="#picks">剧场版</a>
+        <a href="#picks">短篇动画</a>
+        <a href="#picks">原创动画</a>
+        <a href="#picks">漫改作品</a>
+        <a href="#picks">轻改作品</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="zone" id="tips">
+    <div class="zone-title">
+      <h2>追番小贴士</h2>
+      <span class="sub">少走弯路的几个习惯</span>
+    </div>
+    <p class="zone-note">浏览樱花樱花动漫整理的内容时，养成几个简单习惯，能明显减少选片时间和踩雷概率。</p>
+    <div class="tips">
+      <div class="tip">
+        <h3>先看前两集再判断</h3>
+        <p>很多作品在第一集只做铺垫，第二到三集才进入主线。过早放弃可能错过真正精彩的部分。</p>
+      </div>
+      <div class="tip">
+        <h3>留意集数与单集时长</h3>
+        <p>十二集短篇和长篇年番的时间成本差别很大，先确认总集数再决定是否开坑更稳妥。</p>
+      </div>
+      <div class="tip">
+        <h3>区分正篇与衍生</h3>
+        <p>续作、外传和剧场版常与正篇共享世界观，按播出或发布顺序观看，理解会更顺畅。</p>
+      </div>
+      <div class="tip">
+        <h3>记录自己的偏好</h3>
+        <p>看完后简单记下喜欢的题材和节奏，下次在樱花樱花动漫筛选时就能更快锁定方向。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="sakura-foot">
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="logo">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#fde8ef"/>
+          <g fill="#e8628c">
+            <ellipse cx="32" cy="18" rx="7" ry="12"/>
+            <ellipse cx="45" cy="27" rx="7" ry="12" transform="rotate(72 45 27)"/>
+            <ellipse cx="40" cy="43" rx="7" ry="12" transform="rotate(144 40 43)"/>
+            <ellipse cx="24" cy="43" rx="7" ry="12" transform="rotate(216 24 43)"/>
+            <ellipse cx="19" cy="27" rx="7" ry="12" transform="rotate(288 19 27)"/>
+          </g>
+          <circle cx="32" cy="32" r="5" fill="#f7b731"/>
+        </svg>
+        <span class="logo-txt">樱花樱花动漫</span>
+      </div>
+      <p>围绕动漫题材、连载状态与年份整理的浏览导航，帮助访问者更快找到想看的番剧方向。</p>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col">
+        <h4>浏览入口</h4>
+        <a href="#genre">题材分类</a>
+        <a href="#picks">动漫推荐</a>
+        <a href="#status">连载状态</a>
+      </div>
+      <div class="foot-col">
+        <h4>筛选方式</h4>
+        <a href="#year">年份索引</a>
+        <a href="#tips">追番小贴士</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">樱花樱花动漫 · 动漫浏览导航</div>
+</footer>
+
+</body>
+  </html>
